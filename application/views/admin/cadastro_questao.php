@@ -105,6 +105,27 @@
                            name="alternativa_e_link" id="campo_alternativa_e_link">
                 </div>
             </div>
+
+
+
+            <div class="form-group">
+                <label for="campo_correta" class="col-sm-2 control-label label-form"> Correnta</label>
+                <div class="col-sm-10">
+
+                    <select id="campo_correta"  name="correta" class="form-control">
+                        <option value="a"> A</option>
+                        <option value="b"> B</option>
+                        <option value="c"> C</option>
+                        <option value="d"> D</option>
+                        <option value="e"> E</option>
+
+
+                    </select>
+
+
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="col-sm-offset-5 col-sm-2 col-sm-offset-5">
 

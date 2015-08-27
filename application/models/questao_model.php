@@ -60,7 +60,7 @@ class Questao_model extends CI_Model{
     function cadastrar(){
 
         $prova= $this->input->post('prova');
-        $ano=$this->input->post('ano'); // RESOLVER
+        $ano=$this->input->post('ano');
         $id_assunto=$this->input->post('assunto');
         $correta=$this->input->post('correta'); // RESOLVER
         $enunciado= $this->input->post('enunciado');
@@ -137,6 +137,27 @@ class Questao_model extends CI_Model{
 
             $this->db->delete('questao', array('id' => $id));
 
+    }
+
+
+    function atualizar(){
+echo 'oi';
+
+
+
+    }
+
+
+    function getById($id){
+       $q =  $this->db->get_where('questao',array('id' => $id));
+
+        if ($q->num_rows() > 0 ){
+            foreach($q->result() as $row){
+                $data[] = $row;
+
+            }
+            return $data;
+        }
     }
 
 

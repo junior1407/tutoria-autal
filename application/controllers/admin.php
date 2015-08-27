@@ -80,27 +80,53 @@ class Admin extends CI_Controller {
 
     public function EditarQuestao(){
         $cod_questao = $this->input->post('cod');
-        echo $cod_questao;
-    }
+        $data['atual']=$this->questao_model->getById($cod_questao);
 
-
-
-
-
-
-
-
-
-
-
-    public function AddAssunto()
-    {
         $this->load->view('admin/cabecalho');
         $this->load->view('admin/menu_lateral');
-        $this->load->view('admin/cadastro_assunto');
+        $this->load->view('admin/editar_questao',$data);
         $this->load->view('admin/rodape');
 
     }
+
+    public function AtualizarQuestao(){
+       // $this->questao_model->atualizar();
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function AddAssunto(){
+        $this->load->view('admin/cabecalho');
+        $this->load->view('admin/menu_lateral');
+        $this->load->view('admin/cadastro_assunto');
+        $this->load->view('admin/rodape');}
+
+
+
+    public function processarAssunto(){
+
+        $this->Assunto_model-> processar();
+
+
+}
 
 
 

@@ -31,5 +31,18 @@ class Assunto_model extends CI_Model{
 
     }
 
+    function processar(){
+         $nome= $this->input->post("nome");
+        $descricao= $this->input->post("descricao");
+        echo $nome;
+        echo $descricao;
+
+
+
+    }
+
+
+
+
 
 }
