@@ -1,0 +1,12 @@
+.errada-questao{
+
+    background-color: #FFE3E3;
+
+}
+.certa-alternativa{
+
+    border: 1px solid black;
+    background-color: #9CFD99;
+    padding: 5 10 5 0;
+
+}

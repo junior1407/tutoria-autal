@@ -20,7 +20,7 @@
 
 <div class="container">
 
-    <form class="form-signin">
+    <form class="form-signin" action="<?php echo base_url('admin/redirectLogin');?>" method="post">
 
         <h2 class="form-signin-heading">Área Administrativa</h2>
         <label for="inputEmail" class="sr-only">Endereço de Email</label>

@@ -5,6 +5,7 @@
     <div class="conteudo-principal">
         <h2 class="titulo-principal"> Editar Questão</h2>
         <form action="<?php echo base_url("admin/atualizarQuestao");?>" method="post" class="form-horizontal" accept-charset="utf-8">
+            <input type="hidden" name="id" value="<?php echo $atual->id;?>">
             <div class="form-group form-inline row">
                 <label for="campo_prova" class="col-sm-2 control-label label-form"> Prova</label>
                 <div class="col-sm-2">
@@ -23,18 +24,15 @@
                 <div class="col-sm-10">
 
                     <select id="campo_assunto"  name="assunto" class="form-control">
-                        <option value="1" <?php if ($atual->id_assunto_questao=="1"){
-                            echo 'selected';
-                        }  ?>> Análise Combinatória</option>
-                        <option value="2" <?php if ($atual->id_assunto_questao=="2"){
-                            echo 'selected';
-                        }  ?>> Teoria dos Numeros</option>
-                        <option value="3" <?php if ($atual->id_assunto_questao=="3"){
-                            echo 'selected';
-                        }  ?>> Geometria</option>
-                        <option value="4" <?php if ($atual->id_assunto_questao=="4"){
-                            echo 'selected';
-                        }  ?>> Álgebra</option>
+
+                        <?php foreach($assuntos as $asatual){?>
+                            <option value="<?php echo $asatual->idassunto;?>"
+                                <?php if ($atual->id_assunto_questao==$asatual->idassunto){
+                                    echo 'selected';
+                                }  ?>
+
+                                > <?php echo $asatual->nome;?></option>
+                        <?php }?>
 
 
 

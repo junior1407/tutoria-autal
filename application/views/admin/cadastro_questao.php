@@ -1,7 +1,7 @@
 <div class="col-md-7">
     <div class="conteudo-principal">
         <h2 class="titulo-principal"> Adicionar Questões</h2>
-        <form action="http://localhost/tutoria/inicio/processar" method="post" class="form-horizontal" accept-charset="utf-8">
+        <form action=" <?php echo base_url("admin/processar"); ?>" method="post" class="form-horizontal" accept-charset="utf-8">
             <div class="form-group form-inline row">
                 <label for="campo_prova" class="col-sm-2 control-label label-form"> Prova</label>
                 <div class="col-sm-2">
@@ -20,10 +20,13 @@
                 <div class="col-sm-10">
 
                     <select id="campo_assunto"  name="assunto" class="form-control">
-                        <option value="1"> Análise Combinatória</option>
-                        <option value="2"> Teoria dos Numeros</option>
-                        <option value="3"> Geometria</option>
-                        <option value="4"> Álgebra</option>
+
+
+
+                        <?php foreach($assuntos as $atual){?>
+                            <option value="<?php echo $atual->idassunto;?>"> <?php echo $atual->nome;?></option>
+                       <?php }?>
+
 
 
 

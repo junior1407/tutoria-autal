@@ -9,6 +9,16 @@
 class Questao_model extends CI_Model{
 
 
+    function obterResposta($id=0){
+
+        $sql = "select * from questao where id=?";
+        $q = $this->db->query($sql,$id);
+        return $q->result()[0]->correta;
+    }
+
+
+
+
     function getAnos(){
         $this->db->group_by('ano');
         $this->db->select('ano');
@@ -62,7 +72,7 @@ class Questao_model extends CI_Model{
         $prova= $this->input->post('prova');
         $ano=$this->input->post('ano');
         $id_assunto=$this->input->post('assunto');
-        $correta=$this->input->post('correta'); // RESOLVER
+        $correta=$this->input->post('correta');
         $enunciado= $this->input->post('enunciado');
         $link1=$this->input->post('enunciado_link1');
         $link2=$this->input->post('enunciado_link2');
@@ -141,26 +151,49 @@ class Questao_model extends CI_Model{
 
 
     function atualizar(){
-echo 'oi';
+        $id= $this->input->post('id');
+        $prova= $this->input->post('prova');
+        $ano=$this->input->post('ano');
+        $id_assunto=$this->input->post('assunto');
+        $correta=$this->input->post('correta');
+        $enunciado= $this->input->post('enunciado');
+
+        $a=$this->input->post('a');
+        $b=$this->input->post('b');
+        $c=$this->input->post('c');
+        $d=$this->input->post('d');
+        $e=$this->input->post('e');
 
 
 
+
+        $data= [
+            'enunciado' => $enunciado,
+            'a' => $a,
+            'b' => $b,
+            'c' => $c,
+            'd' => $d,
+            'e' => $e,
+            'id_assunto_questao'=> $id_assunto,
+            'prova' => $prova,
+            'ano' => $ano,
+            'correta' => $correta,
+        ];
+        $this->db->where('id',$id);
+        $this->db->update('questao', $data);
     }
 
 
-    function getById($id){
-       $q =  $this->db->get_where('questao',array('id' => $id));
 
-        if ($q->num_rows() > 0 ){
-            foreach($q->result() as $row){
-                $data[] = $row;
 
-            }
-            return $data;
+    function getById($id)
+{
+    $q = $this->db->get_where('questao', array('id' => $id));
+
+    if ($q->num_rows() > 0) {
+        foreach ($q->result() as $row) {
+            $data[] = $row;
+
         }
-    }
-
-
-
-
-} 
+        return $data;
+    }}}

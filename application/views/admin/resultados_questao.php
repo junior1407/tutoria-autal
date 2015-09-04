@@ -31,12 +31,12 @@
                 <form action="<?php echo base_url("admin/DeleteQuestao");?>" class=""  method="post"  >
 
                     <input type="hidden" name="cod" value="<?php echo $atual->id; ?>">
-                    <button class="btn btn-sm paddingminimo" href="<?php echo base_url("admin/DeleteQuestao" );?>"> <span class="glyphicon glyphicon-remove"></span></button>
+                    <button class="btn btn-sm paddingminimo" href="#"> <span class="glyphicon glyphicon-remove"></span></button>
                 </form>
 
-                <form action="<?php echo base_url("admin/ExibeQuestaoIsolada");?>" class=""  method="post"  >
+                <form action="<?php echo base_url("admin/ExibeQuestaoIsolada");?>" class=""  method="get"  >
                 <input type="hidden" name="cod" value="<?php echo $atual->id; ?>">
-                    <button class="btn btn-sm paddingminimo" href=""> <span class="glyphicon glyphicon-eye-open"></span></button>
+                    <button class="btn btn-sm paddingminimo" href="#"> <span class="glyphicon glyphicon-eye-open"></span></button>
                 </td>
                     </form>
             </tr>

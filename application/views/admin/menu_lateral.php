@@ -19,12 +19,10 @@
             <a href="<?php echo base_url("admin/addAssunto"); ?>">
                 <li> Adicionar Assuntos</li>
             </a>
-            <a href="#">
+            <a href="<?php echo base_url("admin/listaAssuntos"); ?>">
                 <li> Editar Assunto</li>
             </a>
-            <a href="#">
-                <li> Excluir Assunto</li>
-            </a>
+
         </ul>
         <li class="termo-cabeca">Administrador</li>
         </a>

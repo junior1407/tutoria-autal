@@ -22,6 +22,19 @@ class Assunto_model extends CI_Model{
 
     }
 
+
+    function getById($id)
+    {
+        $q = $this->db->get_where('assunto', array('idassunto' => $id));
+
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $row) {
+                $data[] = $row;
+
+            }
+            return $data;
+        }}
+
     function getNomeAssuntoById($id){
 
         $this->db->where('idassunto',$id);
@@ -34,10 +47,44 @@ class Assunto_model extends CI_Model{
     function processar(){
          $nome= $this->input->post("nome");
         $descricao= $this->input->post("descricao");
-        echo $nome;
-        echo $descricao;
+
+        $data= [
+            'nome' => $nome,
+            'descricao' => $descricao,
+        ];
+        $this->db->insert('assunto',$data);
 
 
+
+    }
+
+    function atualizar(){
+
+            $idassunto= $this->input->post('idassunto');
+            $nome= $this->input->post('nome');
+            $descricao=$this->input->post('descricao');
+
+
+
+
+
+
+            $data= [
+                'idassunto' => $idassunto,
+                'nome' => $nome,
+                'descricao' => $descricao,
+
+            ];
+            $this->db->where('idassunto',$idassunto);
+            $this->db->update('assunto', $data);
+
+
+
+    }
+
+    function deleteById($id){
+
+        $this->db->delete('assunto', array('idassunto' => $id));
 
     }
 

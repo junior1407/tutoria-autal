@@ -10,26 +10,61 @@ class Admin extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->library('acessobd');
         $this->load->library('session');
+
+/* SE NÃO TIVER LOGADO, LOGUE.
+        if (! $this->session->userdata('first_name'))
+        {
+            redirect('login'); // the user is not logged in, redirect them!
+        }*/
+
     }
     public function index()
     {
-
+        // se for adm.
+//$myUser = $this->session->userdata('user');
+      //  if ($myUser && $myUser->is_admin == "Yes")
       $this->load->view('admin/login_page');
 
 
 
-        //&this->load->view
+    }
+
+    public function redirectLogin(){
+
+        $newdata = array(
+
+            'email'     => $this->input->post("email"),
+            'logged_in' => TRUE,
+        );
+
+        $this->session->set_userdata($newdata);
+
+        echo $this->session->userdata('email');
+    }
+
+
+    public function processar(){
+
+        $this->questao_model->cadastrar();
+        $this->logado_index();
+
     }
 
     public function addQuestao(){
         $this->load->view('admin/cabecalho');
         $this->load->view('admin/menu_lateral');
-        $this->load->view('admin/cadastro_questao');
+        $data['assuntos'] = $this->Assunto_model->getAll();
+        $this->load->view('admin/cadastro_questao',$data);
         $this->load->view('admin/rodape');
     }
 
     public function logado_index(){
-      $this->addQuestao();
+
+
+        $this->load->view('admin/cabecalho');
+        $this->load->view('admin/menu_lateral');
+        $this->load->view('admin/blank');
+        $this->load->view('admin/rodape');
     }
 
     public function  buscarQuestao(){
@@ -73,15 +108,17 @@ class Admin extends CI_Controller {
     }
 
     public function ExibeQuestaoIsolada(){
-        // fazer abrir em nova aba.
-        $cod_questao = $this->input->post('cod');
-        echo $cod_questao;
+
+        $cod_questao = $this->input->get('cod');
+        //EXIBIR QUESTAO
+
+
     }
 
     public function EditarQuestao(){
         $cod_questao = $this->input->post('cod');
         $data['atual']=$this->questao_model->getById($cod_questao);
-
+        $data['assuntos'] = $this->Assunto_model->getAll();
         $this->load->view('admin/cabecalho');
         $this->load->view('admin/menu_lateral');
         $this->load->view('admin/editar_questao',$data);
@@ -90,7 +127,8 @@ class Admin extends CI_Controller {
     }
 
     public function AtualizarQuestao(){
-       // $this->questao_model->atualizar();
+        $this->questao_model->atualizar();
+        $this->logado_index();
 
 
 
@@ -124,10 +162,53 @@ class Admin extends CI_Controller {
     public function processarAssunto(){
 
         $this->Assunto_model-> processar();
+        $this->logado_index();
 
 
 }
 
+    public function listaAssuntos(){
+        $this->load->view('admin/cabecalho');
+        $this->load->view('admin/menu_lateral');
+
+        $data['assuntos'] = $this->Assunto_model->getAll();
+
+        $this->load->view('admin/resultados_assunto',$data);
+    }
+
+
+    public function EditarAssunto()
+    {
+
+
+        $idassunto = $this->input->post('cod');
+        $data['atual'] = $this->Assunto_model->getById($idassunto);
+        $this->load->view('admin/cabecalho');
+        $this->load->view('admin/menu_lateral');
+        $this->load->view('admin/editar_assunto', $data);
+        $this->load->view('admin/rodape');
+
+
+    }
+
+    public function AtualizaAssunto(){
+
+        $this->Assunto_model->atualizar();
+        $this->logado_index();
+
+
+
+    }
+
+    public function DeleteAssunto(){
+
+        // $this->logado_index();
+        $idassunto = $this->input->post('cod');
+        $this->Assunto_model->deleteById($idassunto);
+        $this->logado_index();
+
+
+    }
 
 
 
